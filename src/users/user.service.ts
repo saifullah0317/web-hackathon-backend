@@ -50,7 +50,7 @@ export class UsersService {
   async updateUser(id:string,body:UserDto): Promise<User> {
     const updatedUser=await this.userModel.findByIdAndUpdate(id,body,{new:true});
     if(!updatedUser){
-        throw new NotFoundException(`User ${body.username} not found...!`);
+        throw new NotFoundException(`User ${body.email} not found...!`);
     }
     return updatedUser;
   }

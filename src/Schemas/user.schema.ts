@@ -9,6 +9,9 @@ export class User {
 
   @Prop()
   password: string;
+
+  @Prop()
+  name:string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
@@ -16,5 +19,6 @@ export const UserSchema = SchemaFactory.createForClass(User);
 export interface UserInterface extends mongoose.Document{
   _id:string,
   email:string,
-  password:string
+  password:string,
+  name:string
 }

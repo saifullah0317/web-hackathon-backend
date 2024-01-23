@@ -7,4 +7,7 @@ export class UserDto{
 
     @IsString()
     password:string;
+
+    @IsString()
+    name:string;
 }
