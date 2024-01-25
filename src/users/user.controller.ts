@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Get, Param, Post, Put, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, ValidationPipe} from '@nestjs/common';
 import { UsersService } from './user.service';
 import { UserDto } from './user.dto';
 import { User } from 'src/Schemas/user.schema';
@@ -8,7 +8,7 @@ export class UserController {
   constructor(private readonly usersService: UsersService) {}
   
   // get all the users
-  @Get()
+  @Get('all')
   async getall():Promise<User[]>{
     return await this.usersService.getall();
   }

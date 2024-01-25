@@ -12,7 +12,7 @@ export class FollowService {
     try{
       const userToFollow=await this.userService.getByEmail(doFollow.email);
       if(!userToFollow){
-        throw new HttpException(`User ${userToFollow.email} do not exist!`,HttpStatus.NOT_FOUND);
+        throw new HttpException(`User ${userToFollow.name} do not exist!`,HttpStatus.NOT_FOUND);
       }
       const addFollow={
         userid:doFollow.userid,

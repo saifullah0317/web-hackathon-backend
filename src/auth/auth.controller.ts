@@ -1,14 +1,27 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Get, Res, Post, Body, ValidationPipe, HttpException, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Res, Post, Body, ValidationPipe, HttpException, HttpStatus, Req } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { UserInterface } from 'src/Schemas/user.schema';
 import { LoginDto } from 'src/users/login.dto';
 import { UserDto } from 'src/users/user.dto';
 import { UsersService } from 'src/users/user.service';
+import { AuthService } from './auth.service';
 
 @Controller('auth')
 export class AuthController {
   constructor(private jwtService: JwtService,
-    private userService:UsersService) {}
+    private userService:UsersService, private readonly authService:AuthService) {}
+
+    @Get()
+    async getByid(@Req() req):Promise<UserInterface>{
+      try{
+        const userid=await this.authService.getUseridByToken(req.cookies);
+        return this.userService.getByid(userid)
+      }
+      catch(e){
+        throw new HttpException(e,HttpStatus.BAD_REQUEST);
+      }
+    }
 
   @Post('login')
   async login(@Body(new ValidationPipe()) body:LoginDto, @Res({ passthrough: true }) res) {

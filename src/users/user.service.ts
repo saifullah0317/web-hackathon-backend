@@ -46,6 +46,13 @@ export class UsersService {
     }
     return userData;
   }
+  async getByid(id:string):Promise<UserInterface>{
+    const userData=await this.userModel.findById(id);
+    if(!userData){
+        throw new HttpException('User not found',HttpStatus.NOT_FOUND);
+    }
+    return userData;
+  }
 
   async updateUser(id:string,body:UserDto): Promise<User> {
     const updatedUser=await this.userModel.findByIdAndUpdate(id,body,{new:true});
