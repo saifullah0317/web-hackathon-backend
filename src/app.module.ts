@@ -6,9 +6,10 @@ import { UsersModule } from './users/user.module';
 import { AuthModule } from './auth/auth.module';
 import { FollowModule } from './follow/follow.module';
 import { SocialpostModule } from './socialpost/socialpost.module';
+import { CommentModule } from './comment/comment.module';
 
 @Module({
-  imports: [ConfigModule.forRoot({isGlobal:true}), MongooseModule.forRoot(process.env.MONGO_URI), UsersModule, AuthModule, FollowModule, SocialpostModule],
+  imports: [ConfigModule.forRoot({isGlobal:true}), MongooseModule.forRoot(process.env.MONGO_URI), UsersModule, AuthModule, FollowModule, SocialpostModule,CommentModule],
   controllers: [],
   providers: [],
 })
